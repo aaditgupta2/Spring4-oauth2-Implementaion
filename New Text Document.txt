@@ -1,0 +1,55 @@
+Hi Guys,
+
+Today I am taking sick leave because of food poisoning.
+
+Thanks
+Arpan
+
+
+
+
+Hi Prasad,
+
+As todaY I am on sick leave but it will not hamper the time lines for P7 integration.
+
+Thanks
+Arpan
+
+
+
+HI Jeff,
+
+For New web service development (REST style), I would suggest below best practices for web services because I can see below points are the pains points in GTI webservices:
+
+
+1. We should support both JSON/XML (But JSON should be first choice over xml because, it is lightweight interms of size/parsing).
+
+2. We should validation the request w.r.t. to its prediffened schema. (It will really helps for unnesaary data issues and validation error on service/data later).
+
+3. While parsing the xml/json if we are using jaxb or any framework we should go with sax parser implementation. (In terms of memory it is very effiecient).
+   Note: Currently in GTI dom parser is used. And for heavy xml, memory cosumptions are large. I already validate in yourkit tool.
+
+4. We should support two types syncrounus web service:
+   a. Syncrounus web service with full response return at a one time (Current implementation).
+   b. Syncrounus web service with chunked output.
+      Note: 
+       1. It will be used is response is very large. (like in GTI)
+       2. It shouldbe in implemented  description manner like just add one annotation to it. (This will require a build liitle framework)
+
+5. Design rest URLs in a way that one resource/webservice will do only one operation.
+   Note: Currently in GTI one rest service doing almost all the operations. Hence JUNIT will be more complex.
+
+6. Below are the layer should be used:
+   Security Layer (Missing in GTI)
+   Controller/Resource layer
+   Validation Layer for business validation (Missing in GTI)
+   Service Layer
+   Data Layer
+
+7. We should add any application security layer (basic auth, oAuth etc.)  for access the rest/web services.
+   Note: Currently anybody can access GTI web service.
+
+Jeff, Above are just my suggestions. Whats your thoughts on this? 
+
+Thanks
+Arpan 
